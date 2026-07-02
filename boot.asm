@@ -2,7 +2,7 @@
 [bits 16]
 
 start:
-    ; EKRAN TEMİZLEME
+    ; EKRAN TEMİZLEME (screen cleaning)
     mov ah, 06h
     mov al, 0
     mov bh, 1Ah
@@ -10,12 +10,14 @@ start:
     mov dx, 184Fh
     int 0x10
 
-    ; SI'yi mesajin adresine ayarla
+    ; SI'yi mesajin adresine ayarla  (Set SI to the message address.)
     mov si, mesaj
     call print_string
 
-    jmp $              ; sonsuz dongu (kernel hazir olana kadar)
+    jmp $              ; sonsuz dongu (kernel hazir olana kadar)  infinite loop (until the kernel is ready)
 
+
+;YAZI YAZDIRMAK İÇİN GEREKEN KODLAR (CODES REQUIRED TO PRINT TEXT)
 print_string:
     lodsb
     cmp al, 0
